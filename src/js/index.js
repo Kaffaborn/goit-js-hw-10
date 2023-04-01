@@ -13,12 +13,14 @@ const refs = {
 
 refs.inputField.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
+
 function onSearch(e) {
-    e.preventDefault();
+  e.preventDefault();
+  clearRendered();
+
   const countryName = refs.inputField.value.trim();
 
   if (!countryName) {
-    clearRendered();
     return;
   }
 
@@ -26,7 +28,6 @@ function onSearch(e) {
 }
 
 function countriesRender(country) {
-  clearRendered();
 
   if (country.length > 10) {
     return Notify.info("Too many matches found. Please enter a more specific name.")
@@ -40,7 +41,6 @@ function countriesRender(country) {
         </li>`
     })
       .join('');
-    
     refs.countryList.insertAdjacentHTML('beforeend', markupList)
   }
 
@@ -56,7 +56,7 @@ function countriesRender(country) {
             <p><b>Languages:</b> ${Object.values(languages).join(', ')}</p>
         </div>`
     })
-
+clearRendered()
     refs.countryInfo.insertAdjacentHTML('beforeend', markup)
   }
 
@@ -69,3 +69,4 @@ function clearRendered() {
   refs.countryList.innerHTML = '';
   refs.countryInfo.innerHTML = '';
 }
+
