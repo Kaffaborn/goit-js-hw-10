@@ -16,7 +16,6 @@ refs.inputField.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   e.preventDefault();
-  clearRendered();
 
   const countryName = refs.inputField.value.trim();
 
@@ -30,6 +29,7 @@ function onSearch(e) {
 function countriesRender(country) {
 
   if (country.length > 10) {
+    clearRendered();
     return Notify.info("Too many matches found. Please enter a more specific name.")
   }
 
@@ -41,6 +41,9 @@ function countriesRender(country) {
         </li>`
     })
       .join('');
+    
+    clearRendered();
+    
     refs.countryList.insertAdjacentHTML('beforeend', markupList)
   }
 
@@ -57,10 +60,12 @@ function countriesRender(country) {
         </div>`
     })
     clearRendered();
+
     refs.countryInfo.insertAdjacentHTML('beforeend', markup)
   }
 
   if (!country.length) {
+    clearRendered();
     return Notify.failure('Oops, there is no country with that name');
   };
 }
