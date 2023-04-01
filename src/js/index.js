@@ -56,7 +56,7 @@ function countriesRender(country) {
             <p><b>Languages:</b> ${Object.values(languages).join(', ')}</p>
         </div>`
     })
-clearRendered()
+    clearRendered();
     refs.countryInfo.insertAdjacentHTML('beforeend', markup)
   }
 
