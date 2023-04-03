@@ -16,6 +16,7 @@ refs.inputField.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   e.preventDefault();
+  clearRendered();
 
   const countryName = refs.inputField.value.trim();
 
